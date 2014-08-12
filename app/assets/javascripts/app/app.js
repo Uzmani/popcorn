@@ -62,6 +62,10 @@ var popcornApp = angular.module('popcornApp', [])
           $scope.addFavorite = function(movie) {
             movie.isFavorite = true
           }
+
+          $scope.removeFavorite = function(movie) {
+            movie.isFavorite = false;
+          }
     });
 
 
