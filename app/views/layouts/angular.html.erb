@@ -27,7 +27,34 @@
     </div>
 
     <div ng-controller="MoviesController">
-      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="movie in movies">
+            <div class="movie-container">
+              <a href="/movie/{{movie.youtubeId}}">
+                <div class="thumbnail">
+                  <div class="poster img-rounded">
+                    <img ng-src="{{movie.posterUrl}}" alt="{{movie.title}}">
+                  </div> <!-- end rounded -->
+                </div> <!-- end thumbnail -->
+                <div class="title">
+                  {{ movie.title }}
+                </div>
+              </a>
+              <a class="favorite"
+                 ng-click="removeFavorite(movie)"
+                 ng-if="movie.isFavorite">
+                 <span class="favorited">&#x2665;</span>Favorite
+              </a>
+              <a class="favorite" 
+                 ng-click="addFavorite"
+                 ng-if="!movie.isFavorite">
+                 <span class="unfavorited-heart">&#x2661;</span>Add Favorite
+               </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="f">
