@@ -1,7 +1,17 @@
-var popcornApp = angular.module('popcornApp', [])
+var popcornApp = angular.module('popcornApp', ['ngRoute'])
+.config(function($routeProvider, $locationProvider) {
+     $routeProvider
+          .when('/',
+          {
+               controller: 'MoviesController',
+               templateUrl: 'templates/movies.html'
+          })
+          .otherwise({redirectTo: '/'});
+     $locationProvider.html5Mode(true);
+})
 .controller('MoviesController',
     function($scope) {
-      
+       console.log("MoviesController is booting");
        $scope.movies = [
           {
           youtubeId: "8Eg6yIwP2vs",
@@ -66,7 +76,10 @@ var popcornApp = angular.module('popcornApp', [])
           $scope.removeFavorite = function(movie) {
             movie.isFavorite = false;
           }
-    });
+    })
+.controller('MovieController', function($scope) {
+     console.log('movieController is booting');
+});
 
 
 
