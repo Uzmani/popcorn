@@ -7,7 +7,7 @@ angular.module('popcornApp', [
      $routeProvider
           .when('/movie/:movie_id',
           {
-               contoller: 'MovieController',
+               controller: 'MovieController',
                templateUrl: "/templates/movie.html"
           })
           .when('/',
