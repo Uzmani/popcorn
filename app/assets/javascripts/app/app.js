@@ -10,6 +10,11 @@ angular.module('popcornApp', [
                controller: 'MovieController',
                templateUrl: "/templates/movie.html"
           })
+          .when('/login',
+          {
+               controller: "LoginController",
+               templateUrl: "/templates/login.html"
+          })
           .when('/',
           {
                controller: 'MoviesController',
