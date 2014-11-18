@@ -2,7 +2,8 @@ angular.module('popcornApp', [
      'ngRoute',
      'ngCookies', 
      'popcornApp.controllers',
-     'popcornApp.services'
+     'popcornApp.services',
+     'popcornApp.directives'
      ])
 .config(function($routeProvider, $locationProvider) {
      $routeProvider

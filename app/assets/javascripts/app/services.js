@@ -26,7 +26,7 @@ angular.module('popcornApp.services', [ ])
     }
   })
 .service('UserService', 
-     function($q, $cookieStore) {
+     function($q, $cookieStore, $rootScope) {
        var service = this;
        this._user = null;
        this.setCurrentUser = function(u) {
@@ -37,7 +37,10 @@ angular.module('popcornApp.services', [ ])
          if(service._user) {
            d.resolve(service._user);
          } else if ($cookieStore.get('user')) {
+           service._user = $cookieStore.get('user');    
+           $rootScope.$broadcast('user:set', service._user);
            d.resolve(service._user);
+           
          } else{
             d.resolve(null);
          }
@@ -51,15 +54,17 @@ angular.module('popcornApp.services', [ ])
          };
 
          service.setCurrentUser(user);
+         console.log(user);
          $cookieStore.put('user', user);
-
+         $rootScope.$broadcast('user:set', user);
          d.resolve(user);
          return d.promise;
        };
        this.logout = function() {
          var d = $q.defer();
          service._user = null;
-         $cookieStore.remove('user')
+         $cookieStore.remove('user');
+         $rootScope.$broadcast('user:unset');
          d.resolve();
          return d.promise;
        };
