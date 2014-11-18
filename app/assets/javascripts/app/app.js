@@ -17,6 +17,11 @@ angular.module('popcornApp', [
                controller: "LoginController",
                templateUrl: "/templates/login.html"
           })
+          .when('/user/:user_id',
+          {
+               controller: "ProfileController",
+               templateUrl: "/templates/profile.html"
+          })
           .when('/',
           {
                controller: 'MoviesController',
