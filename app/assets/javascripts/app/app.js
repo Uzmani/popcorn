@@ -1,5 +1,6 @@
 angular.module('popcornApp', [
      'ngRoute',
+     'ngCookies', 
      'popcornApp.controllers',
      'popcornApp.services'
      ])

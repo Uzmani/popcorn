@@ -14,4 +14,5 @@
 //= require angular
 //= require angular-route
 //= require underscore
+//= require angular-cookies
 //= require_tree .

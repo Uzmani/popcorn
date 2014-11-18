@@ -1,4 +1,4 @@
-angular.module('popcornApp.services', [])
+angular.module('popcornApp.services', [ ])
 .service('MoviesService', 
   function($q, $http) {
     this.movies = function(name) {
@@ -24,5 +24,43 @@ angular.module('popcornApp.services', [])
       });
       return d.promise;
     }
-  }
-);
+  })
+.service('UserService', 
+     function($q, $cookieStore) {
+       var service = this;
+       this._user = null;
+       this.setCurrentUser = function(u) {
+         service._user = u;
+       };
+       this.currentUser = function() {
+         var d = $q.defer();
+         if(service._user) {
+           d.resolve(service._user);
+         } else if ($cookieStore.get('user')) {
+           d.resolve(service._user);
+         } else{
+            d.resolve(null);
+         }
+         return d.promise;
+       };
+       this.login = function(email) {
+         var d = $q.defer();
+         var user = {
+           email: email,
+           id: 1
+         };
+
+         service.setCurrentUser(user);
+         $cookieStore.put('user', user);
+
+         d.resolve(user);
+         return d.promise;
+       };
+       this.logout = function() {
+         var d = $q.defer();
+         service._user = null;
+         $cookieStore.remove('user')
+         d.resolve();
+         return d.promise;
+       };
+    });
